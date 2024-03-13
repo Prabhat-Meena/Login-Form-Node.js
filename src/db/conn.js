@@ -1,6 +1,6 @@
 const mongoose  = require("mongoose");
-const Secret_Key = require("../../secret")
-mongoose.connect(Secret_Key)
+
+mongoose.connect(process.env.DB_HOST)
 .then(()=>{
     console.log("connected");
 }).catch((err)=>{
