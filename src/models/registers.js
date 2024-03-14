@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
+//here we are creating schema for data base
 const employeeSchema = new mongoose.Schema({
     firstname: {
         type: String,
@@ -45,6 +47,7 @@ const employeeSchema = new mongoose.Schema({
     }]
 })
 
+
 //genrating token here
 
 employeeSchema.methods.generateAuthToken = async function(next){
@@ -73,10 +76,11 @@ employeeSchema.pre("save", async function(next){
         this.confirmpassword = await bcrypt.hash(this.confirmpassword, 10);
 
     }
-    // console.log("hello");
     //agar next() ko call nhi karenge to pre meddileware  hamesa load hi hota rahega
     next();
 })
+
+
 // defining model
 const Register = new mongoose.model("Register", employeeSchema);
 
